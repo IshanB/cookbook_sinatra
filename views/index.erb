@@ -1,0 +1,50 @@
+<%#= require_relative '../lib/cookbook.rb'
+require_relative '../lib/controller.rb'
+require_relative '../lib/router.rb'%>
+
+<head>
+<link rel="stylesheet" type="text/css" href="../public/application.css">
+</head>
+
+<h1>Cookbook Sinatra</h1>
+
+<h4>
+  An app to manage your cookbook!
+</h4>
+
+<p> Here is the list of your recipes:
+
+<% @recipes.each_with_index do |recipe, index| %>
+  <li>
+    <%= "#{recipe.name} – #{recipe.difficulty} (#{recipe.preptime})" %>
+    <a href="/recipes/<%= index %>">(delete)</a>
+  </li>
+<% end %>
+
+</p>
+
+<!-- <a href='/new'>Add a new recipe</a>
+ -->
+<h4> Add a new recipe! </h4>
+
+<form action="/new" method="POST">
+  <div>
+    <label for="name">Enter the name of the recipe:</label>
+    <input type="text" name="name" required>
+  </div>
+  <div>
+    <label for="description">Enter your description: </label>
+    <input type="description" name="description" required>
+  </div>
+  <div>
+    <label for="Preptime">Enter the recipe's prep time: </label>
+    <input type="preptime" name="preptime">
+  </div>
+  <div>
+    <label for="difficulty">Enter the recipe's difficulty: </label>
+    <input type="difficulty" id="difficulty">
+  </div>
+  <div>
+    <input type="submit" value="Add your recipe!">
+  </div>
+</form>
